@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { nanoid } from 'nanoid';
 import { ContactList } from './ContactList/ContactList';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Fiender } from './Fiender/Fiender';
@@ -18,7 +17,6 @@ export function App() {
     if (contacts.some(contact => contact.name === values.name)) {
       alert(`${values.name} is already in contacts`);
     } else {
-      values.id = nanoid();
       dispatch(addContact(values));
       resetForm();
     }

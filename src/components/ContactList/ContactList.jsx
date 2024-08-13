@@ -4,23 +4,22 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact, fetchContacts } from '../../redux/contactOperations';
+import { selectFilteredContacts } from '../../redux/contactSlice';
+
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => {
-    console.log('state:', state);
-    return state.contact.contacts;
-  });
+  const contacts = useSelector(selectFilteredContacts);
   const loading = useSelector(state => state.contact.loading);
   const error = useSelector(state => state.contact.error);
-  const filter = useSelector(state => state.contact.filter);
   if (loading) {
-    return <p>Loading...</p>;
+    return <p style={{ width: '100%', textAlign: 'center' }}>Loading...</p>;
   }
-  console.log('contacts:', contacts[0]);
-  console.log('error:', error);
+  if (error) {
+    Notiflix.Notify.error(error);
+  }
   return (
     <ul className={css.list}>
-      {contacts[0].map(({ name, id, number }) => {
+      {contacts.map(({ name, id, number }) => {
         return (
           <li key={id} className={css.contactListItem}>
             <div className={css.contactInfo}>
@@ -31,7 +30,6 @@ export const ContactList = () => {
               type="button"
               onClick={event => {
                 dispatch(deleteContact(event.target.id));
-                dispatch(fetchContacts());
               }}
               id={id}
               className={css.deleteButton}
