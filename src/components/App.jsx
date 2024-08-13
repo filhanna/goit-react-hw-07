@@ -4,7 +4,7 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Fiender } from './Fiender/Fiender';
 import css from './App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, fetchContacts } from '../redux/contactOperations';
+import { addContact, fetchContacts } from '../redux/contactsOps';
 
 export function App() {
   const dispatch = useDispatch();

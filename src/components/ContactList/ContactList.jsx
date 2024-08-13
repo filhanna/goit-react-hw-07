@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact, fetchContacts } from '../../redux/contactOperations';
+import { deleteContact, fetchContacts } from '../../redux/contactsOps';
 import { selectFilteredContacts } from '../../redux/contactSlice';
 
 export const ContactList = () => {
